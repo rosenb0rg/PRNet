@@ -62,13 +62,13 @@ def main(args):
     vertices_dir = "%s\\%s\\vertices\\%s_t%s" % (base_save_dir, character, character, targ_num)
     print (vertices_dir)
 
-    #something like d:\character\raupach\src\align\raupach_richardson_t10_s001
-    save_folder = "%s\\%s\\src\\align\\%s_%s_s%s_t%s" % (base_save_dir, character, scene, character, source_num, targ_num )
+    #something like d:\character\raupach\src\align\raupach_richardson_t10_s001\\obj
+    save_folder = "%s\\%s\\src\\align\\%s_%s_s%s_t%s\\obj" % (base_save_dir, character, scene, character, source_num, targ_num )
     print (save_folder)
 
 
     if not os.path.exists(save_folder):
-        os.mkdir(save_folder)
+        os.makedirs(save_folder)
 
     # image_path_list= []
     # for root, dirs, files in os.walk('%s' % image_folder):

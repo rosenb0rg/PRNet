@@ -56,7 +56,7 @@ from os import walk
 import glob
 
 
-PREDICTOR_PATH = "./shape_predictor_68_face_landmarks.dat"
+PREDICTOR_PATH = "C:/local/src/PRnet/shape_predictor_68_face_landmarks.dat"
 SCALE_FACTOR = 1 
 FEATHER_AMOUNT = 5
 
@@ -246,17 +246,17 @@ def main(args):
     source = args.source
     target = args.target
 
-#something like d:\characters\raupach\face\raupach_t03b
+	# something like d:\characters\raupach\face\raupach_t03b
     head_folder = "%s\\%s\\face\\%s_t%s" % (baseDir, character,  character, target)
-    print (head_folder)
+    print ('head folder', head_folder)
 
-    #something like d:\characters\raupach\raupach_src\align\raupach_raupach_s001_t03b
-    face_folder = "%s\\%s\\src\\align\\%s_%s_s%s_t%s" % (baseDir, character, scene, character, source, target)
-    print (face_folder)
+    # something like d:\characters\raupach\raupach_src\align\raupach_raupach_s001_t03b\comped
+    face_folder = "%s\\%s\\src\\align\\%s_%s_s%s_t%s\\comped" % (baseDir, character, scene, character, source, target)
+    print ('face folder', face_folder)
 
-    #something like d:\characters\raupach\src\comp\raupach_raupach_s001_tp1
+    # something like d:\characters\raupach\src\comp\raupach_raupach_s001_tp1
     save_folder = "%s\\%s\\src\\comp\\%s_%s_s%s_t%s" % (baseDir, character, scene, character, source, target)
-    print (save_folder)
+    print ('save folder', save_folder)
 
     if not os.path.exists(save_folder):
         os.mkdir(save_folder)
@@ -273,15 +273,15 @@ def main(args):
         face_path_list.append(file)
 
     face_path_list=sorted(face_path_list)
-    #print (face_path_list)
+    # print (face_path_list)
 
     for i, image_path in enumerate(head_path_list):
         try:
             print (i)
             head = head_path_list[i]
-            print (head)
+            #print (head)
             face = face_path_list[i]    
-            print (face)
+            #print (face)
             im1, landmarks1 = read_im_and_landmarks(head)
             im2, landmarks2 = read_im_and_landmarks(face)
             M = transformation_from_points(landmarks1[ALIGN_POINTS], landmarks2[ALIGN_POINTS])
@@ -308,10 +308,10 @@ if __name__ == '__main__':
 
     parser.add_argument('-b', '--baseDir', default='D:\\characters', type=str,
                         help='where all this shit is located')
-    parser.add_argument('-c', '--character', default='raupach', type=str,
-                        help='who is talking')
     parser.add_argument('-s', '--scene', default='raupach', type=str,
                         help='who is in the witness stand')
+    parser.add_argument('-c', '--character', default='raupach', type=str,
+                        help='who is talking')
     parser.add_argument('-S', '--source', default='output', type=str,
                         help='source number (which line)')
     parser.add_argument('-t', '--target', default='output', type=str,

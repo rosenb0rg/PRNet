@@ -38,7 +38,7 @@ def out_vert(args):
     print (save_folder)
 
     if not os.path.exists(save_folder):
-        os.mkdir(save_folder)
+        os.makedirs(save_folder)
 
     types = ('*.jpg', '*.png')
     image_path_list= []
